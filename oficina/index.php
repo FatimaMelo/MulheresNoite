@@ -52,7 +52,7 @@
   <div class="container-fluid">
     <div class="row text-center servicos">
       <div class="col-md-4">
-        <img src="imagens/oleo.jpg" class="img-fluid">
+        <img src="imagens/oleo.jpg" class="img-fluid" id="imagemteste">
         <h3>Troca de Óleo</h3>
       </div>
 

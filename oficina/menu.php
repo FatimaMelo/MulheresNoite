@@ -11,7 +11,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nossa Oficina</a>
+          <a class="nav-link" href="quemsomos.php">Nossa Oficina</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -26,6 +26,19 @@
             <a class="dropdown-item" href="#">Serviços Elétricos</a>
           </div>
         </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Loja
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="pecas.php">Peças</a>
+            <a class="dropdown-item" href="#">Acessórios</a>
+            
+          </div>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="#">Fale Conosco</a>
         </li>
