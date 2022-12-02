@@ -54,7 +54,7 @@ require_once 'menu.php';
         <div class="col-md-3">
             <div class="card" >
                 <img class="card-img-top" src="imagens/amortecedor.jpg" alt="Imagem de capa do card">
-                <div class="card-body corpo-card">
+                <div class="card-body">
                     <h5 class="card-title">Amortecedores Cofap</h5>
                     <p class="card-text">A cofap é referência no ramos de peças de suspensão. Deixe seu carro estável e seguro.</p>
                     </p>R$ 560,00</p>
