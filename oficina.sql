@@ -135,8 +135,7 @@ create table funcionario(
 	
 	select placa,marca,modelo from veiculo where cor = 'preto';
 	
-	4)Pesquisar placa,marca e modelo de todos os veículos que tenham qualquer
-	variação da cor preta.
+	4)Pesquisar placa,marca e modelo de todos os veículos que tenham qualquer variação da cor preta.
 	
 	select placa,marca,modelo from veiculo where cor like '%preto%';
 	
@@ -170,8 +169,7 @@ create table funcionario(
 	WHERE
 	dataentrada BETWEEN '2022-12-01' AND '2022-12-07';
 	
-	8)Pesquisar ordem de serviço, placa do veículo, defeito dos veículos que 
-	deram entrada na oficina nos dias 05 e 07 de dexenbro.
+	8)Pesquisar ordem de serviço, placa do veículo, defeito dos veículos que deram entrada na oficina nos dias 05 e 07 de dezembro.
 	
 	select ordemservico,placa,defeito
 	from servico
@@ -203,7 +201,7 @@ create table funcionario(
 	
 	14)Mostrar nome, telefone e qualificação de todos os funcionários.
 	
-	select nome,telefone,qualificacao from funcionario;select nome,telefone,qualificacao from funcionario;
+	select nome,telefone,qualificacao from funcionario;
 	
 	
 	15)Mostrar nome e telefone de todos os eletricistas.
@@ -214,19 +212,16 @@ create table funcionario(
 	
 	select nome,preco from peca where marca = 'frasle';
 	
-	17) Mostrar ordem de servico e preço pago de todos os serviços 
-	que foram pagos a vista no dia 01/12/2022.
+	17) Mostrar ordem de servico e preço pago de todos os serviços que foram pagos a vista no dia 01/12/2022.
 	
 	select ordemservico,preco
 	from servico
 	where 
 	formapagamento = 'a vista' and dataentrada = '2022-12-01';
 	 
-	18)Pesquisar nome,telefone,nome da rua, número da casa, bairro e cidade de 
-	todos os clientes da oficina.
+	18)Pesquisar nome,telefone,nome da rua, número da casa, bairro e cidade de todos os clientes da oficina.
 	
-	select cliente.nome, cliente.telefone,endereco.rua,cliente.numerocasa,
-	endereco.bairro,endereco.cidade
+	select cliente.nome, cliente.telefone,endereco.rua,cliente.numerocasa,endereco.bairro,endereco.cidade
 	from endereco inner join cliente
 	on endereco.cep = cliente.cep;
 	
@@ -237,3 +232,19 @@ create table funcionario(
 	from cliente inner join veiculo
 	on cliente.cpf = veiculo.cpf;
 
+	20) Pesquisar nome e quantidade de todas as peças usadas na ordem de serviço 1.
+	
+	select peca.nome,servicopeca.quantidade
+	from peca inner join servicopeca
+	on peca.codigopeca = servicopeca.codigopeca
+	and servicopeca.ordemservico = 1;	
+	
+	21) Pesquisar nome do cliente, telefone, placa do veículo,
+	ordem de serviço e  defeito de todos os serviços que ja foram feitos na oficina.
+  
+	select cliente.nome,cliente.telefone,veiculo.placa,
+	servico.ordemservico,servico.defeito
+	from cliente inner join veiculo
+	on cliente.cpf = veiculo.cpf
+	inner join servico
+	on veiculo.placa = servico.placa;
