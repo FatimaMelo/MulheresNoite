@@ -29,20 +29,20 @@
 						</div>
 						<input type="password" class="form-control" placeholder="Senha">
 					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Lembrar-me
+				
+					<div class="form-group">
+						<input type="submit" value="Cadastre-se" class="btn float-right ">
 					</div>
+
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
 			<div class="card-footer">
+				
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="#">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+					<a href="#">Esqueceu a Senha?</a>
 				</div>
 			</div>
 		</div>
