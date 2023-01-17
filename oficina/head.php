@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="pecas.css">
   <link rel="stylesheet" href="login.css">
 
+  <script src="Scripts/cep.js"></script>
+
   <title>Oficina Conserta Tudo</title>
 </head>
 
