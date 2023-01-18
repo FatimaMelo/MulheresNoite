@@ -1,0 +1,72 @@
+Aula dia 12/01
+
+1) Criar senha pela função hash PHP para testar.
+
+<?php
+ //Exemplo criptografar a senha
+ // echo "senha".password_hash(123, PASSWORD_DEFAULT);
+ ?>
+ 
+ 2) Abrir sessão na página do login e também limpar o buffer de memória.
+ 
+	session_start();
+	ob_start();
+	
+3) Criar variáveis de sessão para o usuário logado no if de teste da senha.
+
+	  $_SESSION['matricula'] = $resposta['matricula'];
+      $_SESSION['nome'] = $resposta['nome'];
+	  
+	  Testar e verificar que nesse ponto o usuário consegue se mover através da página administrativa mesmo se sair da página navegando pelas setas no navegador,
+	  
+	  
+4) Colocar as mensagens de logado como sessão de usuário
+
+$_SESSION['msg'] = "Erro: Usuário ou senha inválida!</p>";
+
+5) Verificar se a variável de sessão msg existe e imprimí-la, depois destruir a variável de sessão. (depois dos ifs de teste de usuário e senha)
+
+ if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+
+6) Na página administrativa abrir sessão, limpar buffer e mostrar o usuário logado.
+
+session_start();
+ob_start();
+
+echo "Bem vindo(a) ".$_SESSION['nome'];
+
+7) Criar um botão "link para usuário fechar sua sessão" na página administrativa.
+
+<a href="sair.php"><button type="submit">Sair</button></a>
+
+8)Criar o documento sair.php para destruir a sessão do usuário com as variáveis de sessão.
+
+	a) abrir sessão e limpar buffer
+			session_start();
+			ob_start();
+	
+	b) destruir as variáveis de sessão e criar uma variável de sessão para mostrar que o usuário foi deslogado.
+	
+		unset($_SESSION['matricula'], $_SESSION['nome']);
+		$_SESSION['msg'] = "Sessão Encerrada!";
+
+	c) direcionar o usuário de volta a tela de login ou outra de acordo com seu sistema.	
+	
+		header("Location: login.php");
+
+9) Na página administrativa inserir um if para verificar se existem as variáveis de sessão. Caso elas não existam siginifica que esse usuário esta navegando sem estar logado, você deve então direcioná-lo para a página de login.
+
+if((!isset($_SESSION['matricula'])) AND (!isset($_SESSION['nome']))){
+        $_SESSION['msg'] = "Erro: Necessário realizar o login para acessar a página!";
+        header("Location: login.php");
+}
+
+
+
+
+
+ 
+ 

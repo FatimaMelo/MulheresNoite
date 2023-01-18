@@ -1,0 +1,90 @@
+Cadastro de Aluno
+
+Arquivo controlealuno.php
+
+1) Abrir conexão
+
+ include_once 'conexao.php';
+ 
+2) Criar um array de dados com os dados vindos do formulário.
+
+$dadoscad = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+3)Verificar se o botão de enviar os dados foi clicado para
+então efetuar a inclusão do registro.
+
+if (!empty($dadoscad['btncad'])) {
+
+}
+
+4) Criar o variável com o comando mysql para salvar os dados
+
+$sql = "insert into aluno(nome,sexo,datanascimento,
+    telefone,cpf,rg,cep,numerocasa,complemento,foto,email,senha)
+    values(:nome,:sexo,:datanascimento,:telefone,:cpf,:rg,:cep,
+    :numerocasa,:complemento,:foto,:email,:senha)";
+	
+5)Criar variável para acessar a conexão e montar o arquivo 
+mysql para ser executado.
+
+$salvar= $conn->prepare($sql);
+    $salvar->bindParam(':nome', $dadoscad['nome'], PDO::PARAM_STR);
+    $salvar->bindParam(':sexo', $dadoscad['sexo'], PDO::PARAM_STR);
+    $salvar->bindParam(':datanascimento', $dadoscad['dn'], PDO::PARAM_STR);
+    $salvar->bindParam(':telefone', $dadoscad['telefone'], PDO::PARAM_STR);
+    $salvar->bindParam(':cpf', $dadoscad['cpf'], PDO::PARAM_STR);
+    $salvar->bindParam(':rg', $dadoscad['rg'], PDO::PARAM_STR);
+    $salvar->bindParam(':cep', $dadoscad['cep'], PDO::PARAM_STR);
+    $salvar->bindParam(':numerocasa', $dadoscad['numero'], PDO::PARAM_INT);
+    $salvar->bindParam(':complemento', $dadoscad['complemento'], PDO::PARAM_STR);
+    $salvar->bindParam(':foto', $dadoscad['foto'], PDO::PARAM_STR);
+    $salvar->bindParam(':email', $dadoscad['email'], PDO::PARAM_STR);
+    $salvar->bindParam(':senha', $dadoscad['senha'], PDO::PARAM_STR);
+    $salvar->execute();
+
+6) Verificar se a variável $salvar recebeu algum retorno, 
+ou seja, o comando execute foi executado com sucesso 
+no servidor mysql.
+
+    if ($salvar->rowCount()) {
+        echo "Usuário cadastrado com sucesso!";
+        unset($dadoscad); // após salvar apaga os dados da matriz de dados do formulário
+    } else {
+        echo "Usuário não cadastrado!</p>";
+    }
+	
+7) Fazer verificação antes de gerar a rotina mysql para salvar - Criar uma variável lógica
+ para verificar se existem campos vazios e também para verificar inconsistências em 
+ outros campos se necessário. Caso existam campos vazios ou erros de preenchimento a 
+ variável receberá true. Após a criação realizar o teste dos dados utilizando o comando 
+ TRIM.
+
+		$vazio = false;
+
+        $dadoscad = array_map('trim', $dadoscad);
+        if (in_array("", $dadoscad)) {
+            $vazio = true;
+            echo "Preencher todos os campos!";
+        } elseif (!filter_var($dadoscad['email'], FILTER_VALIDATE_EMAIL)) {
+            $vazio = true;
+            echo "Informe um e-mail válido!</p>";
+        }
+
+8) Criar um if para verificar o status da variável lógica vazio e deixar todo o restante de código
+do cadastro dentro desse if.
+
+		if (!$vazio) {
+		
+			código do cadastro
+			
+		}
+		
+9) Criptografar a senha com a função hash e associar a uma variável.
+
+ $senha = password_hash($dadoscad['senha'], PASSWORD_DEFAULT);
+ 
+10)Quando passar os dados para cadastro informe a variável senha com o código criptografado.
+
+ $salvar->bindParam(':senha', $senha, PDO::PARAM_STR);
+
+		
