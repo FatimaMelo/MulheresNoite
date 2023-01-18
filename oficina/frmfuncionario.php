@@ -88,7 +88,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="complemento">Complemento</label>
-                    <input type="text" class="form-control" name="complemento">
+                    <input type="text" class="form-control" name="complemento" value="casa">
                 </div>
             </div>
         </div>
@@ -122,13 +122,13 @@
             <div class="col-md-5  ">
               <div class="form-group">
                  <label for="senha">Informe uma Senha</label><p>
-                 <input type="text" class="form-control" name="senha">
+                 <input type="password" class="form-control" name="senha">
                 </div>
             </div>
-
+        </div>
             
-
-            <div class="col-md-2">
+        <div class="row">   
+            <div class="col-md-12 text-right">
                 <div class="form-group">
                    
                     <input type="submit" class="btn btn-primary" value="Enviar" name="btncad">
