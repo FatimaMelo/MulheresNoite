@@ -30,7 +30,7 @@
 
 			if(($resultado) AND ($resultado->rowCount() != 0)){
 				$linha = $resultado->fetch(PDO::FETCH_ASSOC);
-				var_dump($linha);
+				//var_dump($linha);
 
 				if(password_verify($dados['senha'], $linha['senha'])){
 					$_SESSION['nome'] = $linha['nome'];
@@ -87,7 +87,7 @@
 					</div>
 				
 					<div class="form-group">
-						<input type="submit" value="Cadastre-se" class="btn float-right ">
+					<a href="frmfuncionario.php"><button type="submit" class="btn float-right ">Cadastre-se</button></a>
 					</div>
 
 					<div class="form-group">
