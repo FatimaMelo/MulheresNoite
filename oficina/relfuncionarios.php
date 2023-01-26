@@ -15,7 +15,7 @@
 
 
     $busca = "SELECT matricula,nome,telefone,cpf,email from
-    funcionario LIMIT $inicio , $limitereg";         
+    funcionario WHERE status = 'A' LIMIT $inicio , $limitereg";         
 
     $resultado= $conn->prepare($busca);
     $resultado->execute();
@@ -74,7 +74,7 @@
 
 
     //Contar os registros no banco
-    $qtregistro = "SELECT COUNT(matricula) AS registros FROM funcionario";
+    $qtregistro = "SELECT COUNT(matricula) AS registros FROM funcionario WHERE status='A'";
     $resultado = $conn->prepare($qtregistro);
     $resultado->execute();
     $resposta = $resultado->fetch(PDO::FETCH_ASSOC);

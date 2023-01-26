@@ -31,11 +31,12 @@
 
             
             $senha = password_hash($dadoscad['senha'], PASSWORD_DEFAULT);
+            $status = "A";
 
             $sql = "insert into funcionario(nome,telefone,cpf,qualificacao,
-            experiencia,cep,numerocasa,complemento,email,senha)values
+            experiencia,cep,numerocasa,complemento,email,senha,status)values
             (:nome,:telefone,:cpf,:qualificacao,:experiencia,:cep,
-            :numerocasa,:complemento,:email,:senha)";
+            :numerocasa,:complemento,:email,:senha,:status)";
 
         	$salvar= $conn->prepare($sql);
             $salvar->bindParam(':nome', $dadoscad['nome'], PDO::PARAM_STR);
@@ -48,6 +49,7 @@
             $salvar->bindParam(':complemento', $dadoscad['complemento'], PDO::PARAM_STR);
             $salvar->bindParam(':email', $dadoscad['email'], PDO::PARAM_STR);
             $salvar->bindParam(':senha', $senha, PDO::PARAM_STR);
+            $salvar->bindParam(':status',$status,PDO::PARAM_STR);
             $salvar->execute();
 
             if ($salvar->rowCount()) {

@@ -125,6 +125,18 @@
                  <input type="password" class="form-control" name="senha">
                 </div>
             </div>
+
+            <div class="col-md-5  ">
+              <div class="form-group">
+                 <label for="senha">Selecione Sua função</label><p>
+                 <select name="funcao">
+                    <option value="copeiro">Copeiro</option>
+                    <option value="garçon">Garçon</option>
+                    <option value="fritadeira">Fritadeira</option>
+
+                </select>
+                </div>
+            </div>
         </div>
             
         <div class="row">   
