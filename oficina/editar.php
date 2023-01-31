@@ -34,6 +34,12 @@
         </div>
 
         <div class="row">
+                <div class="col-md-12 text-center">
+                   <img src="<?php echo $foto; ?>" style=width:150px;height:150px;>
+                </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-1">
                 <div class="form-group">
                     <label for="matricula">Matricula</label>
