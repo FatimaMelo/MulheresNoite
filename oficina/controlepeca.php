@@ -36,8 +36,6 @@
 
     }
 
-
-
 		if(!empty($dadoscad["btncad"])){
            
            // var_dump($dadoscad);
@@ -58,8 +56,8 @@
             if(!$vazio){           
            
 
-            $sql = "insert into peca(nome,marca,modeloano,quantidade,preco,foto)
-            values(:nome,:marca,:modelo,:quantidade,:preco,:foto)";
+            $sql = "insert into peca(nome,marca,modeloano,quantidade,preco,foto,idcategoria)
+            values(:nome,:marca,:modelo,:quantidade,:preco,:foto,:idcategoria)";
 
         	$salvar= $conn->prepare($sql);
             $salvar->bindParam(':nome', $dadoscad['nome'], PDO::PARAM_STR);
@@ -68,6 +66,7 @@
             $salvar->bindParam(':quantidade', $dadoscad['quantidade'], PDO::PARAM_INT);
             $salvar->bindParam(':preco', $dadoscad['preco'], PDO::PARAM_STR);
             $salvar->bindParam(':foto',$path,PDO::PARAM_STR);
+            $salvar->bindParam(':idcategoria', $dadoscad['categoria'], PDO::PARAM_INT);
             $salvar->execute();
 
             if ($salvar->rowCount()) {

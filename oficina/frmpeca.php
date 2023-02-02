@@ -1,5 +1,6 @@
 <?php
     require_once 'head.php';
+    require_once 'conexao.php';
 ?>
 
 <form method="POST" action="controlepeca.php" enctype="multipart/form-data">
@@ -48,7 +49,38 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="preco">Preço</label>
-                    <input type="text" class="form-control" name="preco">
+                    <input type="text" class="form-control" name="preco" onchange="this.value = this.value.replace(/,/g, '.')">
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select name="categoria" class="form-control">
+                        <?php
+
+                            $sql = "SELECT * from categoria";
+                            $resultado=$conn->prepare($sql);
+                            $resultado->execute();
+
+                            if(($resultado) && ($resultado->rowCount()!=0)){
+                                while ($linha = $resultado->fetch(PDO::FETCH_ASSOC)){
+                                    extract($linha);
+
+                           
+                        ?>                    
+                    
+                    <option value="<?php echo $idcategoria;?>"><?php echo $nomecategoria;  ?></option>
+                        
+
+                    <?php
+                                }
+                            }
+                            ?>
+
+                    </select>                
+
+
                 </div>
             </div>
   
