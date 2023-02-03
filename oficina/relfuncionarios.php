@@ -14,7 +14,7 @@
 
 
 
-    $busca = "SELECT matricula,nome,telefone,cpf,email from
+    $busca = "SELECT matricula,nome,telefone,cpf,email,foto from
     funcionario WHERE status = 'A' LIMIT $inicio , $limitereg";         
 
     $resultado= $conn->prepare($busca);
@@ -25,7 +25,7 @@
 
             <table class="table">
                     <thead>
-                        <tr>
+                        <th>Foto</th>
                         <th>Matrícula</th>
                         <th>Cpf</th>
                         <th>Nome</th>
@@ -44,6 +44,7 @@
             ?>
                     
                         <tr>
+                            <td><img src="<?php echo $foto; ?>" style=width:150px;height:150px;></td>
                             <td><?php echo $matricula; ?></td>
                             <td><?php echo $cpf; ?></td>
                             <td><?php echo $nome; ?></td>
