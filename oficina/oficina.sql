@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/01/2023 às 01:45
+-- Tempo de geração: 06/02/2023 às 23:36
 -- Versão do servidor: 10.4.24-MariaDB
 -- Versão do PHP: 8.1.6
 
@@ -22,6 +22,41 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `oficina` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `oficina`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `codigopeca` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `quantcomprada` int(11) NOT NULL,
+  `preco` double NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idcategoria` int(11) NOT NULL,
+  `nomecategoria` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `categoria`
+--
+
+INSERT INTO `categoria` (`idcategoria`, `nomecategoria`) VALUES
+(1, 'peça'),
+(2, 'acessório'),
+(3, 'óleos'),
+(4, 'lataria');
 
 -- --------------------------------------------------------
 
@@ -96,7 +131,7 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`matricula`, `nome`, `telefone`, `cpf`, `qualificacao`, `experiencia`, `cep`, `numerocasa`, `complemento`, `email`, `senha`, `status`, `foto`) VALUES
-(1, 'João da Silva', '(21)99869-4581', '123456789-12', 'lanterneiro', '3 anos', '26551-090', 100, 'casa', 'joao@gmail.com', '$2y$10$OHLcBJcU87bu4MRpZOeVZuFE9YvPjGAotnaF0ADhTGUE3mV1E63w2', 'A', ''),
+(1, 'João da Silva', '(21)99869-4581', '123456789-12', 'lanterneiro', '3 anos', '26551-090', 100, 'casa', 'joao@gmail.com', '$2y$10$OHLcBJcU87bu4MRpZOeVZuFE9YvPjGAotnaF0ADhTGUE3mV1E63w2', 'A', 'fotos/63dc508041315.png'),
 (2, 'Pedro Santos', '(21)99911-2222', '123456789-13', 'mecânico', '10 anos', '23085-610', 31, 'fundos', 'pedro', '1234', 'A', ''),
 (3, 'Debora', '(21)87845-4545', '445.454.544-', 'programadora', '3 anos', '23085-610', 555, 'casa', 'debora@gmail.com', '$2y$10$3Yc/fYBHdIBlgBw8pzw7eOB68zFr1jG.apm6jM/jzxjm5cB2SDBX2', 'A', 'fotos/63d83cc39445c.png'),
 (4, 'Rafaela', '(21)54545-4545', '121.212.121-', 'eletricista', '3 anos', '23085-610', 555, 'casa', 'rafaela@gmail.com', '$2y$10$/Lr6RLtLge7RdGy/LBT9T.IW046WWb3DGWjpk95ymjBa.eY2b8M2O', 'A', 'fotos/63d8447c04c32.png');
@@ -114,18 +149,23 @@ CREATE TABLE `peca` (
   `modeloano` varchar(250) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `preco` double NOT NULL,
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(255) NOT NULL,
+  `idcategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `peca`
 --
 
-INSERT INTO `peca` (`codigopeca`, `nome`, `marca`, `modeloano`, `quantidade`, `preco`, `foto`) VALUES
-(1, 'pastilha de freio', 'frasle', 'citroen c3 e c4 - 2007,2008,2009,2010', 30, 170, ''),
-(2, 'amortecedores dianteiros par', 'nakata', 'Renault Sandero,logan 2010/2011/2012', 10, 530, ''),
-(3, 'peça1', 'magneti mareli', 'de 2000/2010', 30, 50, 'produtos/63d85f9194b22.jpg'),
-(4, 'peca2', 'bosh', 'de 2010/2020', 52, 60, 'produtos/63d85fdb1318c.jpg');
+INSERT INTO `peca` (`codigopeca`, `nome`, `marca`, `modeloano`, `quantidade`, `preco`, `foto`, `idcategoria`) VALUES
+(1, 'pastilha de freio', 'frasle', 'citroen c3 e c4 - 2007,2008,2009,2010', 30, 170, 'produtos/63d85f9194b22.jpg', 1),
+(2, 'amortecedores ', 'nakata', 'Renault Sandero,logan 2010/2011/2012', 10, 530, 'produtos/63d85f9194b22.jpg', 1),
+(3, 'peça1', 'magneti mareli', 'de 2000/2010', 30, 50, 'produtos/63d85f9194b22.jpg', 1),
+(4, 'peca2', 'bosh', 'de 2010/2020', 52, 60, 'produtos/63d85fdb1318c.jpg', 1),
+(5, 'Bieleta', 'bosh', 'de 2000/2010', 15, 30, 'produtos/63d98984302d3.jpg', 1),
+(6, 'bieleta magnete', 'magneti mareli', 'de 2000/2010', 10, 50, 'produtos/63d989bc7d74f.jpg', 1),
+(7, 'bieleta nova', 'magneti mareli', 'de 2000/2010', 15, 100.8, 'produtos/63d98b3923c42.jpg', 1),
+(8, 'Parachoque fusca', 'vw', '1970/1980', 10, 50, 'produtos/63daf80b472d4.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -222,6 +262,12 @@ INSERT INTO `veiculo` (`placa`, `marca`, `modelo`, `cor`, `ano`, `cpf`) VALUES
 --
 
 --
+-- Índices de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idcategoria`);
+
+--
 -- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
@@ -245,7 +291,8 @@ ALTER TABLE `funcionario`
 -- Índices de tabela `peca`
 --
 ALTER TABLE `peca`
-  ADD PRIMARY KEY (`codigopeca`);
+  ADD PRIMARY KEY (`codigopeca`),
+  ADD KEY `fk_categoria` (`idcategoria`);
 
 --
 -- Índices de tabela `servico`
@@ -282,6 +329,12 @@ ALTER TABLE `veiculo`
 --
 
 --
+-- AUTO_INCREMENT de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
@@ -291,7 +344,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `peca`
 --
 ALTER TABLE `peca`
-  MODIFY `codigopeca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `codigopeca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
@@ -326,6 +379,12 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`cep`) REFERENCES `endereco` (`cep`);
+
+--
+-- Restrições para tabelas `peca`
+--
+ALTER TABLE `peca`
+  ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`);
 
 --
 -- Restrições para tabelas `servico`

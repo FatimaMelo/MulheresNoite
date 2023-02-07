@@ -62,4 +62,20 @@
 }
 
 
+.imagens img{
+    width:100%;
+    height:300px;
+}
 
+.imagens{
+    padding:20px;
+}
+
+.conteudo{
+    padding:20px;
+}
+
+.conteudo img{
+    width:100%;
+    height:350px;
+}
