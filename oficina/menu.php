@@ -56,7 +56,9 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <img src="imagens/carrinho2.png" style=width:60px;height:60px;>
+        <a href="frmcarrinho.php">
+          <img src="imagens/carrinho2.png" style=width:60px;height:60px;>
+        </a>
         <?php
             if($_SESSION["quant"]>0){
               echo $_SESSION["quant"];
